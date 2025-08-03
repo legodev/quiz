@@ -1,0 +1,44 @@
+.main {
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+    margin: 0 auto;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.title {
+    font-size: 2.2em;
+    text-align: center;
+}
+
+.question {
+    font-size: 1.2em;
+    font-weight: 600;
+    text-align: center;
+}
+
+.optionContainer {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    width: 80vw;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn {
+    padding: 15px 25px;
+    background-color: var(--btn);
+    color: #0a0a0a;
+    border: 2px solid var(--btn);
+    border-radius: 5px;
+    font-size: 1.2em;
+    transition: background-color .3s ease, color .3s ease;
+}
+
+.btn:focus {
+    background-color: transparent;
+    color: var(--btn);
+}
