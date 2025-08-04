@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { preguntasQuiz } from './questionArray'
+import { quizData } from './questionArray'
 import { useRouter } from 'next/navigation'
 import styles from "./page.module.css"
 
@@ -43,12 +43,12 @@ export default function Questions() {
     setRespuestasUsuario([
       ...respuestasUsuario,
       {
-        pregunta: preguntasQuiz[preguntaActual].pregunta,
+        pregunta: quizData[preguntaActual].pregunta,
         respuesta: opcionSeleccionada,
       },
     ])
 
-    const respuestaCorrecta = preguntasQuiz[preguntaActual].respuestaCorrecta
+    const respuestaCorrecta = quizData[preguntaActual].respuestaCorrecta
 
     if (opcionSeleccionada === respuestaCorrecta) {
       setPuntaje(puntaje + 1)
@@ -56,7 +56,7 @@ export default function Questions() {
 
     setOpcionSeleccionada('')
 
-    if (preguntaActual < preguntasQuiz.length - 1) {
+    if (preguntaActual < quizData.length - 1) {
       setPreguntaActual(preguntaActual + 1)
     } else {
       const participantesGuardados = localStorage.getItem('nombres')
@@ -81,12 +81,12 @@ export default function Questions() {
     }
   }
 
-  const pregunta = preguntasQuiz[preguntaActual]
+  const pregunta = quizData[preguntaActual]
 
   return (
     <main className={styles.main}>
       <h3 className={styles.title}>
-        Pregunta {preguntaActual + 1} de {preguntasQuiz.length}
+        Question {preguntaActual + 1} of {quizData.length}
       </h3>
       <p className={styles.question}>{pregunta.pregunta}</p>
 
@@ -103,10 +103,10 @@ export default function Questions() {
       </div>
 
       {opcionSeleccionada && (
-        <button className={styles.btn} onClick={handleSiguientePregunta}>
-          {preguntaActual < preguntasQuiz.length - 1
-            ? 'Siguiente Pregunta'
-            : 'Finalizar Quiz'}
+        <button className={`${styles.btn} ${styles.btnNext}`} onClick={handleSiguientePregunta}>
+          {preguntaActual < quizData.length - 1
+            ? 'Next Question'
+            : 'Finish Quiz'}
         </button>
       )}
     </main>
